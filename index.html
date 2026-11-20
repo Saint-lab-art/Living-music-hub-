@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18"><meta name="description" content="Discover music, record vocals, create beats and mix your sound on Living Music Hub.">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="styles.css">
+<title>Living Music Hub</title>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#home"><span class="brand-mark brand-mark-duo" aria-label="Microphone and keyboard">🎤<small>🎹</small></span><span>LIVING <b>MUSIC HUB</b><small>FEEL THE MUSIC. LIVE THE SOUND.</small></span></a><div class="top-actions"><span id="connectionStatus" class="connection">Connecting…</span><button id="installBtn" class="install hidden">Install app</button></div></header>
+<main>
+<section id="home" class="hero"><div class="eyebrow">ZAMBIA • AFRICA • THE WORLD</div><h1>Music lives<br><span>here.</span></h1><p>Discover fresh sounds, support independent artists and find your next favourite song.</p><div class="hero-actions"><button class="primary" data-scroll="discover">Explore music <span>→</span></button><button class="secondary" data-scroll="studio">Open music studio</button><button class="secondary" data-scroll="upload">Upload your music</button></div><div class="soundwave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></section>
+<section id="discover" class="section"><div class="section-head"><div><div class="eyebrow">YOUR NEXT SOUND</div><h2>Discover music</h2></div><span class="count" id="trackCount">0 tracks</span></div>
+<div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search songs, artists or genres..." aria-label="Search music"></div>
+<div class="chips" id="genreChips"><button class="chip active" data-genre="All">All</button><button class="chip" data-genre="Gospel">Gospel</button><button class="chip" data-genre="Afrobeats">Afrobeats</button><button class="chip" data-genre="Reggae">Reggae</button><button class="chip" data-genre="Hip-hop">Hip-hop</button><button class="chip" data-genre="R&amp;B">R&amp;B</button><button class="chip" data-genre="Traditional">Traditional</button></div>
+<div id="trackList" class="track-list"><div class="empty"><div class="empty-icon">♫</div><h3>Discover your next favourite song</h3><p>Published music from independent artists will appear here.</p></div></div>
+</section>
+<section id="studio" class="section studio-section">
+<div class="section-head"><div><div class="eyebrow">CREATE YOUR SOUND</div><h2>Music studio</h2></div><span class="count">Record · Perform · Mix</span></div>
+<p class="section-intro">Make a beat, play the keyboard, record vocals and capture your live mix. Your recording stays on your device until you choose to download or submit it.</p>
+<div class="studio-grid">
+  <article class="studio-card studio-wide">
+    <div class="studio-card-head"><div><span class="studio-kicker">01 / VOCALS</span><h3><span aria-hidden="true">🎙️</span> Microphone recording</h3></div><button id="micToggle" class="secondary">Enable microphone</button></div>
+    <p class="muted">Allow microphone permission when your browser asks. Headphones are recommended to prevent feedback.</p>
+    <div class="record-controls"><button id="recordStart" class="primary">● Start recording</button><button id="recordStop" class="secondary" disabled>■ Stop</button><span id="recordingInfo" class="muted">No recording yet</span></div>
+    <div id="studioPreviewWrap" class="preview-wrap hidden"><audio id="studioPreview" controls></audio><div class="record-actions"><a id="downloadMix" class="secondary download-link" href="#" download>Download mix</a><button id="useMix" class="primary" disabled>Use in song upload ↑</button></div></div>
+  </article>
+  <article class="studio-card">
+    <div class="studio-card-head"><div><span class="studio-kicker">02 / KEYS</span><h3>🎹 Piano keyboard</h3></div></div>
+    <p class="muted">Tap or press a key to play. The keyboard sound is captured in your studio recording.</p>
+    <div id="keyboardKeys" class="piano-keys" aria-label="Playable piano keyboard"></div>
+  </article>
+  <article class="studio-card">
+    <div class="studio-card-head"><div><span class="studio-kicker">03 / DRUMS</span><h3>🥁 Drum pads</h3></div></div>
+    <p class="muted">Trigger drum sounds live or use the beat sequencer below.</p>
+    <div class="drum-pads"><button type="button" data-drum="kick"><b>🥁</b><span>KICK</span></button><button type="button" data-drum="snare"><b>✴</b><span>SNARE</span></button><button type="button" data-drum="hat"><b>🔔</b><span>HI-HAT</span></button><button type="button" data-drum="clap"><b>👏</b><span>CLAP</span></button></div>
+  </article>
+  <article class="studio-card studio-wide">
+    <div class="studio-card-head"><div><span class="studio-kicker">04 / BEAT MAKER</span><h3>Beat sequencer</h3></div><button id="beatPlay" class="primary">Play beat</button></div>
+    <div class="bpm-control"><label for="bpm">Tempo</label><input id="bpm" type="range" min="70" max="160" value="110"><b id="bpmValue">110 BPM</b></div>
+    <div class="sequencer"> <div class="step-row" data-instrument="kick"><b>Kick</b><div class="steps"></div></div><div class="step-row" data-instrument="snare"><b>Snare</b><div class="steps"></div></div><div class="step-row" data-instrument="hat"><b>Hi-hat</b><div class="steps"></div></div><div class="step-row" data-instrument="clap"><b>Clap</b><div class="steps"></div></div></div>
+    <p class="muted small-note">Select the 16 steps to build your rhythm. Press Start recording to capture the beat and your live performances together.</p>
+  </article>
+  <article class="studio-card studio-wide">
+    <div class="studio-card-head"><div><span class="studio-kicker">05 / MIXER</span><h3>🎚️ Live sound mixer</h3></div><span class="count">Output levels</span></div>
+    <div class="mixer-controls"><label>Master <input id="mixMaster" type="range" min="0" max="100" value="80"><b id="mixMasterValue">80%</b></label><label>Microphone <input id="mixMic" type="range" min="0" max="100" value="85"><b id="mixMicValue">85%</b></label><label>Keyboard <input id="mixKeys" type="range" min="0" max="100" value="75"><b id="mixKeysValue">75%</b></label><label>Drums <input id="mixDrums" type="range" min="0" max="100" value="70"><b id="mixDrumsValue">70%</b></label></div>
+    <p id="studioStatus" class="status" role="status">Studio ready. Tap a key or drum pad to activate audio.</p>
+  </article>
+</div>
+<p class="studio-disclaimer">Studio note: this first browser studio records a live stereo mix as WebM/Opus (or a supported browser format). It provides live channel-level mixing, but not yet a full multitrack editor with separate track timelines, effects racks or automation.</p>
+</section>
+<section id="library" class="section alt"><div class="section-head"><div><div class="eyebrow">SAVED FOR LATER</div><h2>My library</h2></div></div><div id="libraryList" class="track-list"><p class="muted">Sign in to save your favourite songs.</p></div></section>
+<section id="account" class="section"><div class="eyebrow">YOUR MUSIC ID</div><h2>Artist & listener account</h2><p class="section-intro">Create a free account to save favourites, build an artist profile and submit music for review.</p>
+<div id="authPanel" class="auth-grid">
+<form id="signInForm" class="upload-form auth-card"><h3>Welcome back</h3><label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input name="password" type="password" autocomplete="current-password" required minlength="8" placeholder="Your password"></label><button class="primary full" type="submit">Sign in</button><button class="text-button" type="button" id="forgotPassword">Forgot password?</button></form>
+<form id="signUpForm" class="upload-form auth-card"><h3>Join Living Music Hub</h3><label>Your name<input name="full_name" required maxlength="80" placeholder="Your name or artist name"></label><label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Create password<input name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters"></label><button class="primary full" type="submit">Create free account</button><p class="form-note">You may need to confirm your email before signing in.</p></form>
+</div>
+<div id="signedInPanel" class="account-panel hidden"><div><div class="eyebrow">SIGNED IN</div><h3 id="accountName">Your account</h3><p id="accountEmail" class="muted"></p></div><button id="signOutBtn" class="secondary">Sign out</button></div>
+<p id="authStatus" class="status" role="status"></p>
+</section>
+<section id="upload" class="section"><div class="eyebrow">GIVE YOUR SOUND A HOME</div><h2>Artist upload</h2><p class="section-intro">Create your artist profile and submit original music. New uploads are private until reviewed and approved by Living Music Hub.</p>
+<form id="artistForm" class="upload-form"><h3>Artist profile</h3><label>Stage name<input name="stage_name" required maxlength="80" placeholder="Your artist or stage name"></label><label>Short biography<textarea name="bio" rows="3" maxlength="600" placeholder="Tell listeners about your music"></textarea></label><label>City / Country<input name="location" maxlength="100" placeholder="e.g. Chipata, Zambia"></label><button class="secondary full" type="submit">Save artist profile</button><p id="artistStatus" class="status" role="status"></p></form>
+<form id="uploadForm" class="upload-form"><h3>Submit a song</h3><label>Song title<input name="title" required maxlength="120" placeholder="Name of your song"></label><div class="form-row"><label>Genre<select name="genre"><option>Gospel</option><option>Afrobeats</option><option>Reggae</option><option>Hip-hop</option><option>R&amp;B</option><option>Traditional</option><option>Other</option></select></label><label>Language<input name="language" maxlength="40" placeholder="e.g. English, Nyanja"></label></div><label>Song description<textarea name="description" rows="2" maxlength="500" placeholder="Optional description"></textarea></label><label class="file-label">Audio file <span>MP3, M4A, WAV, OGG or FLAC • studio WAV • up to 50 MB</span><input name="audio" type="file" accept="audio/mpeg,audio/mp4,audio/aac,audio/wav,audio/ogg,audio/flac,audio/webm" required></label><label class="rights"><input name="rights" type="checkbox" required> I own this recording or have all permissions needed to upload and distribute it.</label><button class="primary full" type="submit">Submit song for review <span>↑</span></button><p id="uploadStatus" class="status" role="status"></p></form>
+<div id="mySubmissions" class="submission-panel hidden"><h3>My submissions</h3><div id="submissionList"></div></div>
+</section>
+<section id="admin" class="section hidden"><div class="eyebrow">PLATFORM MANAGEMENT</div><h2>Music review desk</h2><p class="section-intro">Approve music only after checking artist identity, rights and submission quality.</p><div id="adminList" class="track-list"></div></section>
+<section class="join"><div class="eyebrow">INDEPENDENT MUSIC. BIG POSSIBILITIES.</div><h2>Let the world<br>hear your sound.</h2><p>Living Music Hub is a home for emerging and established artists across Africa.</p><button class="secondary" data-scroll="upload">Start with an upload</button></section>
+<footer class="site-footer"><span>© <span id="year"></span> Living Music Hub</span><span>Discover Talent • Promote Music • Connect the World</span><small>Artists must upload music they own or are authorised to distribute.</small></footer>
+</main>
+<nav class="bottom-nav"><a href="#home"><span>⌂</span>Home</a><a href="#discover"><span>⌕</span>Discover</a><a href="#studio"><span>🎹</span>Studio</a><a href="#library"><span>♡</span>Library</a><a href="#upload"><span>＋</span>Upload</a><a href="#account"><span>◉</span>Account</a></nav>
+<div class="player" id="player"><div class="player-info"><div class="cover" id="playerCover">♫</div><div class="now"><b id="nowTitle">Choose a song</b><small id="nowArtist">Living Music Hub</small></div></div><div class="player-controls"><button id="prevBtn" aria-label="Previous track">|◀</button><button id="playBtn" class="play" aria-label="Play or pause">▶</button><button id="nextBtn" aria-label="Next track">▶|</button></div><div class="progress-wrap"><span id="currentTime">0:00</span><input id="progress" type="range" min="0" max="100" value="0" aria-label="Song progress"><span id="duration">0:00</span></div><audio id="audio" preload="metadata"></audio></div>
+<script type="module" src="app.js"></script>
+<script type="module" src="studio.js"></script>
+</body></html>
